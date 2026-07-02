@@ -1,0 +1,17 @@
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# state/seen.jsonl 은 이식성을 위해 커밋한다 (gitignore 하지 않음).
+# raw/ 와 wiki/ 는 산출물이므로 커밋한다.
+
+# 재구축 백업 (완주·검증 성공 후 정리)
+.bak-*/
+
+# graphify 지식그래프 산출물 (생성물·재귀 방지)
+graphify-out/

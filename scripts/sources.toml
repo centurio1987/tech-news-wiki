@@ -1,0 +1,312 @@
+# tech-news-wiki 수집 소스 정의
+#
+# 각 [[feed]] 항목:
+#   name      고유 이름 (중복 불가)
+#   url       RSS/Atom 피드 URL  (kind="youtube" 는 channel_id 로 자동 조립되므로 생략 가능)
+#   kind      rss | atom | youtube
+#   audience  ["dev"], ["po"], ["dev","po"] 중 하나 이상
+#   lang      ko | en (참고용)
+#   weight    0<w<=10 — 클러스터 대표 선정 tiebreak / 관련도 우선순위 (기본 1.0)
+#   trust     0<t<=10 — 데이터 신뢰도 prior (게이트웨이#1). 기본 1.0.
+#             회사 공식/1차 소스 1.2, 애그리게이터/재게시 위주 0.9 권장. weight 와 별개.
+#
+# 검증은 scripts/common.py:load_config 가 수행. 잘못된 항목은 비활성 처리되고 경고만 남는다.
+
+# ─────────────────────────── ORDER 지정 소스 ───────────────────────────
+
+[[feed]]
+name = "GeekNews"
+url = "https://news.hada.io/rss/news"
+kind = "atom"
+audience = ["dev", "po"]
+lang = "ko"
+weight = 1.2
+
+[[feed]]
+name = "Hacker News (front page)"
+url = "https://hnrss.org/frontpage"
+kind = "rss"
+audience = ["dev", "po"]
+lang = "en"
+weight = 1.2
+
+[[feed]]
+name = "Lobsters"
+url = "https://lobste.rs/rss"
+kind = "rss"
+audience = ["dev"]
+lang = "en"
+weight = 1.0
+
+[[feed]]
+name = "ByteByteGo"
+url = "https://blog.bytebytego.com/feed"
+kind = "rss"
+audience = ["dev"]
+lang = "en"
+weight = 1.1
+
+[[feed]]
+name = "Ben's Bites"
+url = "https://www.bensbites.com/feed"
+kind = "rss"
+audience = ["po", "dev"]
+lang = "en"
+weight = 1.0
+trust = 0.9      # AI 뉴스 애그리게이터(재게시 위주) — 신뢰도 prior 하향
+
+[[feed]]
+name = "Product Hunt"
+url = "https://www.producthunt.com/feed"
+kind = "atom"
+audience = ["po"]
+lang = "en"
+weight = 1.0
+trust = 0.9      # 제품 홍보/셀프 등록 성격 — 신뢰도 prior 하향
+
+# endoflife.date — 공식 RSS 없음(JSON API만 제공). 후속 과제: API 어댑터로 수집.
+# [[feed]]
+# name = "endoflife.date"
+# url = "https://endoflife.date/..."
+# kind = "rss"
+# audience = ["dev"]
+
+# velopers.kr — /rss 경로가 404. 정확한 피드 경로 확인 전까지 후속 과제(스크레이핑 폴백).
+# [[feed]]
+# name = "Velopers"
+# url = "https://www.velopers.kr/rss"
+# kind = "rss"
+# audience = ["dev"]
+# lang = "ko"
+
+[[feed]]
+name = "Awesome Blogs (all)"
+url = "https://awesome-blogs.petabytes.org/feeds?group=all"
+kind = "rss"
+audience = ["dev"]
+lang = "ko"
+weight = 0.9
+
+# ─────────────────────────── YouTube (ORDER 지정) ───────────────────────────
+
+[[feed]]
+name = "YT · Fireship"
+kind = "youtube"
+channel_id = "UCsBjURrPoezykLs9EqgamOA"
+audience = ["dev"]
+lang = "en"
+weight = 1.0
+
+[[feed]]
+name = "YT · Theo (t3.gg)"
+kind = "youtube"
+channel_id = "UCbRP3c757lWg9M-U7TyEkXA"
+audience = ["dev"]
+lang = "en"
+weight = 0.9
+
+[[feed]]
+name = "YT · ThePrimeagen"
+kind = "youtube"
+channel_id = "UC8ENHE5xdFSwx71u3fDH5Xw"
+audience = ["dev"]
+lang = "en"
+weight = 0.8
+
+[[feed]]
+name = "YT · Awesome Open Source"
+kind = "youtube"
+channel_id = "UCwFpzG5MK5Shg_ncAhrgr9g"
+audience = ["dev"]
+lang = "en"
+weight = 0.7
+
+[[feed]]
+name = "YT · TechWorld with Nana"
+kind = "youtube"
+channel_id = "UCdngmbVKX1Tgre699-XLlUA"
+audience = ["dev"]
+lang = "en"
+weight = 0.8
+
+[[feed]]
+name = "YT · Google for Developers"
+kind = "youtube"
+channel_id = "UC_x5XG1OV2P6uZZ5FSM9Ttw"
+audience = ["dev"]
+lang = "en"
+weight = 0.8
+
+# ─────────────────────── 추천 추가 소스 (ORDER 요청 반영) ───────────────────────
+
+[[feed]]
+name = "The Pragmatic Engineer"
+url = "https://blog.pragmaticengineer.com/rss/"
+kind = "rss"
+audience = ["dev", "po"]
+lang = "en"
+weight = 1.1
+
+[[feed]]
+name = "InfoQ"
+url = "https://feed.infoq.com/"
+kind = "rss"
+audience = ["dev"]
+lang = "en"
+weight = 0.9
+
+[[feed]]
+name = "The Changelog"
+url = "https://changelog.com/feed"
+kind = "atom"
+audience = ["dev"]
+lang = "en"
+weight = 0.9
+
+[[feed]]
+name = "GitHub Blog"
+url = "https://github.blog/feed/"
+kind = "rss"
+audience = ["dev"]
+lang = "en"
+weight = 0.9
+
+[[feed]]
+name = "GitHub Changelog"
+url = "https://github.blog/changelog/feed/"
+kind = "rss"
+audience = ["dev"]
+lang = "en"
+weight = 0.8
+
+[[feed]]
+name = "Simon Willison"
+url = "https://simonwillison.net/atom/everything/"
+kind = "atom"
+audience = ["dev", "po"]
+lang = "en"
+weight = 1.0
+
+[[feed]]
+name = "요즘IT"
+url = "https://yozm.wishket.com/magazine/feed/"
+kind = "rss"
+audience = ["dev", "po"]
+lang = "ko"
+weight = 1.0
+
+[[feed]]
+name = "Lenny's Newsletter"
+url = "https://www.lennysnewsletter.com/feed"
+kind = "rss"
+audience = ["po"]
+lang = "en"
+weight = 1.0
+
+# ─────────────────── 회사 엔지니어링/테크 블로그 (ORD-002 신규 소스) ───────────────────
+# 회사 공식 엔지니어링 블로그 = 아키텍처·사고회고·릴리스의 1차 소스 → trust 1.2.
+# 일부 RSS 경로는 변동이 잦다. 실행 중 검증하며, 실패는 fetch 가 자동 비활성(경고).
+
+[[feed]]
+name = "Netflix TechBlog"
+url = "https://netflixtechblog.com/feed"
+kind = "rss"
+audience = ["dev"]
+lang = "en"
+weight = 1.1
+trust = 1.2
+
+[[feed]]
+name = "Cloudflare Blog"
+url = "https://blog.cloudflare.com/rss/"
+kind = "rss"
+audience = ["dev", "po"]
+lang = "en"
+weight = 1.1
+trust = 1.2
+
+[[feed]]
+name = "Meta Engineering"
+url = "https://engineering.fb.com/feed/"
+kind = "rss"
+audience = ["dev"]
+lang = "en"
+weight = 1.1
+trust = 1.2
+
+[[feed]]
+name = "AWS Architecture"
+url = "https://aws.amazon.com/blogs/architecture/feed/"
+kind = "rss"
+audience = ["dev"]
+lang = "en"
+weight = 1.0
+trust = 1.2
+
+[[feed]]
+name = "Stripe Blog"
+url = "https://stripe.com/blog/feed.rss"
+kind = "rss"
+audience = ["dev", "po"]
+lang = "en"
+weight = 1.0
+trust = 1.2
+
+[[feed]]
+name = "우아한형제들 기술블로그"
+url = "https://techblog.woowahan.com/feed/"
+kind = "rss"
+audience = ["dev"]
+lang = "ko"
+weight = 1.1
+trust = 1.2
+
+[[feed]]
+name = "카카오 Tech"
+url = "https://tech.kakao.com/feed/"
+kind = "rss"
+audience = ["dev"]
+lang = "ko"
+weight = 1.0
+trust = 1.2
+
+[[feed]]
+name = "토스 기술블로그"
+url = "https://toss.tech/rss.xml"
+kind = "rss"
+audience = ["dev", "po"]
+lang = "ko"
+weight = 1.0
+trust = 1.2
+
+# 아래는 RSS 경로 불확실 → 후속 검증 대기(현재 비활성).
+# [[feed]]
+# name = "Uber Engineering"
+# url = "https://www.uber.com/blog/engineering/rss/"
+# kind = "rss"
+# audience = ["dev"]
+# trust = 1.2
+#
+# [[feed]]
+# name = "Discord Blog"
+# url = "https://discord.com/blog/rss.xml"
+# kind = "rss"
+# audience = ["dev"]
+# trust = 1.2
+#
+# [[feed]]
+# name = "LY(LINE) Engineering"
+# url = "https://techblog.lycorp.co.jp/ko/feed/index.xml"
+# kind = "rss"
+# audience = ["dev"]
+# lang = "ko"
+# trust = 1.2
+
+# ─────────────────────────── 클러스터 파라미터 ───────────────────────────
+
+[cluster]
+sim_link = 0.35            # 두 항목을 같은 클러스터로 잇는 코사인 임계
+cohesion_threshold = 0.5   # τ — 이 이상이면 LLM 샘플링 대상(coherent)
+member_sim_min = 0.30      # 거리 게이트: centroid 코사인 이 미만 멤버는 대표 샘플에서 제외
+sample_k = 1               # 클러스터당 기본 대표 수 (size 클수록 +1, 상한 3)
+max_samples = 40           # LLM 에 투입할 대표 총량 상한(컨텍스트 예산)
