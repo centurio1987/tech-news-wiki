@@ -1,7 +1,7 @@
 ---
 type: entity
 created: 2026-07-02
-updated: 2026-07-02
+updated: 2026-07-03
 tags: [회사, ai, llm]
 audience: [dev, po]
 sources: [[digests/2026-07-02]]
@@ -24,6 +24,8 @@ Anthropic은 Claude 계열 LLM을 만드는 AI 기업이다. 2026-07-01 무렵 *
   [Theo의 리뷰](https://www.youtube.com/watch?v=KSV-7ywHxeU), Product Hunt 등록 등 반응 다수 · (2026-06-30)
 - [Fable 5 복귀·수출 통제 해제](https://news.hada.io/topic?id=30998): HN·Theo·Fireship에서 화제 · (2026-07-01)
 - [Claude Science 공개 베타](https://news.hada.io/topic?id=30999) · (2026-07-01)
+- 교차 출처: [Ben's Bites "Fable is back"](https://www.bensbites.com/p/fable-is-back)이 Fable 복귀와 "새 Sonnet"을
+  재확인 · (2026-07-02) — 여전히 2차 출처, 1차 발표 미확인 상태 유지
 
 > ❓ 불확실: 위 항목의 구체 사양·가격·벤치마크·규제 세부는 **비신뢰 피드 요약**에 근거한다. Anthropic 공식
 > 발표(1차 자료)로 검증하기 전까지 단정하지 않는다. LLM 사양·가격을 실제로 판단해야 하면 공식 문서/`claude-api`

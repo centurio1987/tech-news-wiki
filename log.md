@@ -44,3 +44,24 @@ ORDER.md ORD-002 지시("처음부터 다시 구축")에 따라 위키 환경을
   5 claude-cli+haiku) 추가.
 - **README 재작성**: 트리거 키워드 표(수집해줘·질문·lint·재구축)·스크립트 옵션·그래프 조회·모델
   정책 상세화. 테스트 41개 통과(재시도 3건 신규).
+
+## [2026-07-03] ingest | 2026-07-03 digest (Apple PCC→GCP·Vite+ 베타·LUKS 회귀·MCP 인프라)
+
+117항목 수집(29피드 전부 성공, 실패 0) → 클러스터링(coherent 0·loose 117·거리게이트 제외 0) →
+게이트웨이#1 → ingest.
+- 생성: [[digests/2026-07-03]], [[MCP]], [[Apple]], [[Google]], [[vite-plus]]. 갱신: [[Anthropic]]
+  (Ben's Bites 교차 출처), index.md.
+- 게이트웨이#1: pass 36 / hold 1(스페인 Palantir 배제령 — clashreport.com 평판 미상, 교차 보도 없음) /
+  drop 80(YT 백카탈로그 30·PH 홍보 14·범위 밖 재테크 4·중복 보도 "Fable is back" 등).
+  전체 판정 JSON은 digest `## 게이트 로그`.
+
+## [2026-07-03] lint | 게이트웨이#2 (graphify 지식그래프 검증)
+
+`graphify extract`(claude-cli+haiku, 11문서 재추출) → `cluster-only` → `diagnose multigraph`.
+- 결과: 18 노드 · 23 엣지 · 4 커뮤니티. **모순 0 · 깨진 엔드포인트 0 · 중복 엣지 0 · 순환 0**.
+  하이퍼엣지 3건(AI Infrastructure Market Formation·Cloud Provider AI Compute Expansion·
+  AI Dev Tooling Growth)이 오늘 큐레이션 주제와 일치 → 정합성 확인.
+- 관찰: 고립 노드 6(Sonnet 5·Fable 5·PCC-on-GCP·Gemma 4·Manufact 등) — 페이지 내 세부 개념이라
+  깨진 링크 아님(전용 페이지 없는 언급 수준, 후속 성장 후보). 커뮤니티 2 라벨("GitHub Copilot")이
+  실제 구성(Anthropic·Sonnet 5·Fable 5)과 어긋남 — haiku 라벨링 품질 이슈로 기록만, 자동 수정 없음.
+- 되먹임: 깨진 wikilink·orphan 페이지 없음 → 자동 수정 불필요.
